@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DatabaseLab.Models.Customer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="https://kit.fontawesome.com/96ee80c236.js" crossorigin="anonymous"></script>
+</head>
+<i class="fa-solid fa-user fa-3x"></i>
+<h1>Customers</h1>
+
+<p>
+    <a asp-action="Create"><i class="btn btn-secondary">Create New</i> </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+           
+            <th>
+                Customer First Name
+            </th>
+            <th>
+                Customer Last Name
+            </th>
+            <th>
+                Customer Phone Number
+            </th>
+            <th>
+                Gender
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.CName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cinsiyet)
+                </td>
+             
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CustomerId"><i class="fa fa-edit" style="color:black;"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.CustomerId"><i class="fa-solid fa-circle-info k" style="color:black;"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CustomerId"><i class="fa-solid fa-delete-left " style="color:black;"></i> </a> |
+                    <a asp-area="" asp-controller="Vehicle" asp-action="Create" asp-route-id="@item.CustomerId"><i class="fa-solid fa-plus" style="color:black;"></i> </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+
+    }
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+
+    }

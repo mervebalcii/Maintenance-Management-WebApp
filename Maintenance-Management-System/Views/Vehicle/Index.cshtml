@@ -1,0 +1,68 @@
+﻿@model IEnumerable<DatabaseLab.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="https://kit.fontawesome.com/96ee80c236.js" crossorigin="anonymous"></script>
+</head>
+<i class="fa-solid fa-car fa-3x"></i>
+<h1>Vehicles</h1>
+
+<p>
+    <a asp-action="Create"><i class="btn btn-secondary">Create New</i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                License Tag
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            
+            <th>
+                About Customer
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plaka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DropDownListFor(m=> item.VehicleId, new SelectList(ViewBag.ListofCust, "Value", "Text"))
+                </td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.VehicleId"><i class="fa fa-edit" style="color:black;"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.VehicleId"><i class="fa-solid fa-circle-info k" style="color:black;"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.VehicleId"><i class="fa-solid fa-delete-left " style="color:black;"></i></a> |
+                    <a asp-area="" asp-controller="Customer" asp-action="Details" asp-route-id="@item.VehicleId" style="color:black; font-family:courier; " >View Customer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

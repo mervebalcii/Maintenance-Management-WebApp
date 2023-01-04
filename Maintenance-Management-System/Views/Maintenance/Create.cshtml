@@ -1,0 +1,60 @@
+﻿@model DatabaseLab.Models.Maintenance
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Maintenances</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label style="font:bold;" class="control-label">Vehicle</label>
+                <select asp-for="VehicleId" class="form-control" asp-items="ViewBag.VehicleId"></select>
+            </div>
+            <div class="form-group">
+                <label style="font:bold;" class="control-label">Maintenance Cost</label>
+                <input asp-for="Bakım" class="form-control" placeholder="add maintenance cost..." />
+                <span asp-validation-for="Bakım" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label style="font:bold;" class="control-label">Service Cost</label>
+                <input asp-for="Bakım2" class="form-control" placeholder="add sevice cost..." />
+                <span asp-validation-for="Bakım2" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label style="font:bold;" class="control-label">Extras</label>
+                <input asp-for="Bakım3" class="form-control" placeholder="add extras..." />
+                <span asp-validation-for="Bakım3" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-secondary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a style="color:#343a40 !important;" class="btn" asp-action="Index"><i class="fa fa-arrow-circle-left"></i>Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

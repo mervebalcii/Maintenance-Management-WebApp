@@ -1,0 +1,82 @@
+﻿@model DatabaseLab.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h1>Create</h1>
+
+<h4>Vehicle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VehicleId" class="control-label" ></label>
+                <input asp-for="VehicleId" class="form-control" placeholder="write vehicle id..." />
+                @*  <input asp-for="VehicleId" class="form-control" asp-items="ViewBag.custId" placeholder="@Model.VehicleId" />*@
+                <span asp-validation-for="VehicleId" class="text-danger" ></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" placeholder="write vehicle model..." />
+                <span asp-validation-for="Model" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plaka" class="control-label">License Tag</label>
+                <input asp-for="Plaka" class="form-control" placeholder="34 XX 34" />
+                <span asp-validation-for="Plaka" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control"  />
+                <span asp-validation-for="Date" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" placeholder="write customer id..." />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                <span class="errorMessage">
+                    @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-secondary" onclick="myFunction()" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="color:black; font-family:courier; "><i class="fa-solid fa-circle-left" style="color:black;"></i>Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            function myFunction() {
+                alert("@ViewBag.Message");
+            }
+        </script>
+
+    }
+
+
+    }

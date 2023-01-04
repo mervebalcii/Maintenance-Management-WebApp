@@ -1,0 +1,120 @@
+﻿@model IEnumerable<DatabaseLab.Models.GeneralTable>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<head>
+    <script src="https://kit.fontawesome.com/96ee80c236.js" crossorigin="anonymous"></script>
+</head>
+<i class="fa-solid fa-list fa-3x"></i>
+
+<h1>Total Table</h1>
+
+<p>
+    <a asp-action="Create"><i class="btn btn-secondary">Create New</i></a>
+</p>
+
+<br />
+<form asp-action="SearchCustomer">
+    <input type="text" name="search" id="search" />
+    <button type="submit" style="background-color:#343a40 !important; color:white" class="btn"><i class="fa fa-search text-white"></i>Search Customer</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Customer Id
+            </th>
+             <th>
+                Customer First Name
+            </th>
+             <th>
+                Customer Last Name
+            </th>
+             <th>
+                Record Date
+            </th>
+            <th>
+                Customer's Vehicle
+            </th>
+            <th>
+                License Tag
+            </th>
+            <th>
+                Vehicle Maintenance Cost
+            </th>
+            <th>
+                Vehicle Service Cost
+            </th>
+            <th>
+                Vehicle Extras
+            </th>
+            <th>
+                Customer's Total Cost
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerNavigation.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerNavigation.CName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerNavigation.CLastName)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNavigation.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNavigation.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNavigation.Plaka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintenanceNavigation.Bakım)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintenanceNavigation.Bakım2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintenanceNavigation.Bakım3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaintenanceNavigation.totalC)
+                </td>
+
+
+
+                 <td>
+
+                    <a asp-action="DeleteConfirmed" asp-route-id="@item.Id"><i class="fa-solid fa-delete-left " onclick="myFunction()" style="color:black;"></i> </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            function myFunction() {
+                alert("@ViewBag.Message");
+            }
+        </script>
+
+    }
+   
+
+    }

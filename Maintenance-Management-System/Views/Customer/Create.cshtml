@@ -1,0 +1,88 @@
+﻿@model DatabaseLab.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="https://kit.fontawesome.com/96ee80c236.js" crossorigin="anonymous"></script>
+</head>
+
+<h1>Create</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label">Customer Id</label>
+                <input asp-for="CustomerId" class="form-control" placeholder="write customer id..." />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                <span class="errorMessage">
+                   @* @Html.ValidationMessageFor(message => message.CustomerId)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CName" class="control-label">Customer FisrtName</label>
+                <input asp-for="CName" class="form-control" placeholder="write customer name..." />
+                <span asp-validation-for="CName" class="text-danger"></span>
+                <span class="errorMessage">
+                    @*@Html.ValidationMessageFor(message => message.CName)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CLastName" class="control-label">Customer LastName</label>
+                <input asp-for="CLastName" class="form-control" placeholder="write customer surname..." />
+                <span asp-validation-for="CLastName" class="text-danger"></span>
+                <span class="errorMessage">
+                   @* @Html.ValidationMessageFor(message => message.CLastName)*@
+                </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CNumber" class="control-label">Customer Phone Number</label>
+                <input asp-for="CNumber" class="form-control" placeholder="555 555 55 55" />
+                <span asp-validation-for="CNumber" class="text-danger"></span>
+                <span class="errorMessage">
+                    @*@Html.ValidationMessageFor(message => message.CNumber)*@
+                    @*@Html.ValidationMessageFor(model => model.CNumber)*@
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cinsiyet" class="control-label">Gender</label>
+                @Html.RadioButtonFor(expression: model => model.Cinsiyet, value:"Female" ) Female
+                @Html.RadioButtonFor(expression: model => model.Cinsiyet, value:"Male" ) Male
+                <span class="errorMessage">
+                 
+                </span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-secondary" onclick="myFunction()" />
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" style="color:black; font-family:courier; "><i class="fa-solid fa-circle-left" style="color:black;"></i>Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        <script>
+            function myFunction() {
+                alert("@ViewBag.Message");
+            }
+        </script>
+
+    }
+   
+
+    }
+

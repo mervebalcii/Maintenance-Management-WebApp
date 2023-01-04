@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DatabaseLab.Models.Maintenance>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<head>
+    <script src="https://kit.fontawesome.com/96ee80c236.js" crossorigin="anonymous"></script>
+</head>
+<i class="fa-solid fa-screwdriver-wrench fa-3x"></i>
+<h1>Maintenances</h1>
+
+<p>
+    <a asp-action="Create"><i class="btn btn-secondary">Create New</i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleId)
+            </th>
+            <th>
+                 Maintenance Cost
+            </th>
+            <th>
+                 Service Cost
+            </th>
+            <th>
+                 Extras
+            </th>
+            <th>
+                Vehicles
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bakım)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bakım2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bakım3)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentIdFkNavigation.FullName)
+                </td>
+
+               
+
+                <td>
+                    <a asp-action="Calculate" asp-route-id="@item.VehicleId" style="color:black; font-family:courier; ">Calculate Cost</a> |
+                    <a asp-action="Edit" asp-route-id="@item.VehicleId"><i class="fa fa-edit" style="color:black;"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.VehicleId"><i class="fa-solid fa-delete-left " style="color:black;"></i></a>
+                   @* <a asp-action="Details" asp-route-id="@item.VehicleId"><i class="fa-solid fa-circle-info k" style="color:black;"></i>Details</a> |*@
+                    
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
